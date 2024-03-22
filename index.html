@@ -1,0 +1,43 @@
+<html>
+
+<head>
+  <title>
+    Image Captioning
+  </title>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css')}}" >
+</head>
+
+<body align="center">
+  <main class="styling">
+      <div class="wrapper">
+        <div class="box">
+          <div></div> <div></div>
+           <div></div> <div></div>
+           <div></div> <div></div>
+           <div></div> <div></div>
+           <div></div> <div></div>
+           <div></div> <div></div>
+           <h1 style="align-items: center;"> IMAGE CAPTIONING</h1>         
+           <form  action="/" class="form1" method="post" enctype="multipart/form-data">
+              <label for="file" style="color: peachpuff; font-size: 20px;"> <h2>Upload an image: </h2> </label>
+              <input type="file" name="file" placeholder="Select image file">
+              <br><br>
+              <button type="submit">Generate a caption</button>
+              {% if result %}
+                <p style="color: rgb(226, 215, 215); font-size: medium;"> {{result}} </p>
+                <br>
+                <img src="{{ url_for('static', filename='uploads/' + image_path) }}" alt="Uploaded Image" width="110%" height="110%">
+              {% endif %}
+
+              {% if generated_caption %}
+                <p  style="color: rgb(226, 215, 215); font-size: medium;"> Generated caption: </p>
+                  <p style="color: rgb(226, 233, 233); font-size: larger;"> {{generated_caption.split('startseq')[-1].split('endseq')[0].strip()}} </p>
+              {% endif %}
+            </form>            
+        </div>
+      </div>
+    </main>
+
+  </body>
+
+</html>
